@@ -37,19 +37,6 @@
         android:inputType="number"
         android:maxLength="5" />
 
-    <TextView
-        android:id="@+id/textView1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Automation Mode"
-        android:onClick="onAutoModeToggle" />
-
-    <ToggleButton
-        android:id="@+id/autoModeToggle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="ToggleButton" />
-
     <Button
         android:id="@+id/saveButton"
         android:layout_width="wrap_content"
