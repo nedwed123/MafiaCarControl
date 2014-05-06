@@ -10,9 +10,10 @@
 //constants
 const int buttonPin = 2;     // <=======  the number of the pushbutton pin
 const int ledPin =  13;      // <=======  the number of the LED pin
-int count= 0;
+
 // variables will change:
 int buttonState = 0;         // variable for reading the pushbutton status
+int count= 0;
 
 void setup() 
 {
