@@ -1,6 +1,7 @@
-/**
+/** This class handles the joystick appearance.
  * Original code by Zerokol
  * https://github.com/zerokol
+ * Changes by Team Balmung (simeon & dimi)
  */
 
 package se.chalmers.balmung.smartcar;
@@ -22,7 +23,7 @@ public class JoystickView extends View implements Runnable {
 	public final static int RIGHT = 5;
 	public final static int RIGHT_BOTTOM = 6;
 	public final static int BOTTOM = 7;
-	public final static int BOTTOM_LEFT = 8;
+	public final static int BOTOM_LEFT = 8;
 	public final static int LEFT = 1;
 	public final static int LEFT_FRONT = 2;
 
@@ -34,8 +35,8 @@ public class JoystickView extends View implements Runnable {
 	private int yPosition = 0; // Touch y position
 	private double centerX = 0; // Center view x position
 	private double centerY = 0; // Center view y position
-	protected Paint mainCircle;
-	protected Paint button;
+	private Paint mainCircle;
+	private Paint button;
 	private int joystickRadius;
 	private int buttonRadius;
 	private int lastAngle = 0;
@@ -57,14 +58,14 @@ public class JoystickView extends View implements Runnable {
 
 	protected void initJoystickView() {
 		mainCircle = new Paint(Paint.ANTI_ALIAS_FLAG);
-		mainCircle.setColor(Color.BLACK);
+		mainCircle.setColor(Color.WHITE);
 		mainCircle.setStyle(Paint.Style.FILL_AND_STROKE);
-		mainCircle.setAlpha(60);
+		mainCircle.setAlpha(40);
 		
 		button = new Paint(Paint.ANTI_ALIAS_FLAG);
-		button.setColor(Color.BLACK);
+		button.setColor(Color.GRAY);
 		button.setStyle(Paint.Style.FILL);
-		button.setAlpha(80);
+		button.setAlpha(60);
 	}
 
 	@Override
