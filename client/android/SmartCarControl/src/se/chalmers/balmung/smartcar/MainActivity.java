@@ -1,3 +1,8 @@
+/** Main class. This establishes a connection to the server, sends to the server
+ *  and also listens to the camera feed.
+ * @author Team Pegasus (simeon)
+ */
+
 package se.chalmers.balmung.smartcar;
 
 import java.io.BufferedWriter;
@@ -8,9 +13,6 @@ import java.io.PrintWriter;
 import java.net.InetAddress;
 import java.net.Socket;
 import java.net.UnknownHostException;
-
-
-
 
 import se.chalmers.balmung.smartcar.JoystickView;
 import se.chalmers.balmung.smartcar.JoystickView.OnJoystickMoveListener;
@@ -27,8 +29,6 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
-import android.widget.Toast;
-import android.widget.ToggleButton;
 
 public class MainActivity extends Activity {
     private SharedPreferences settings;
@@ -38,7 +38,6 @@ public class MainActivity extends Activity {
 	private String serverIp;	
 	private String prevMsg = "";
     private JoystickView joystick;
-    private JoystickView cameraJoystick;
 	
 	ImageView videoView;
     private int displayWidth;
@@ -65,48 +64,7 @@ public class MainActivity extends Activity {
 		videoView = (ImageView) findViewById(R.id.videoView);
 		displayWidth = videoView.getLayoutParams().width;
 		displayHeight = videoView.getLayoutParams().height;
-		
-		joystick = (JoystickView) findViewById(R.id.joystickView);
-		joystick.setOnJoystickMoveListener(new OnJoystickMoveListener() {
-
-            @Override
-            public void onValueChanged(int angle, int power, int direction) {
-            	// Scale speed
-            	if (angle < -90 || angle > 90) {
-            		power *= -1;
-            	}
-            	
-            	// X to Y adapter
-            	if (angle > 90) {
-            		angle = 180 - angle;
-            	} else if (angle < -90) {
-            		angle = -(180 + angle);
-            	}
-                	send("!" + angle + ":" + power + "*");
-            }
-        }, JoystickView.DEFAULT_LOOP_INTERVAL);
-		
-		cameraJoystick = (JoystickView) findViewById(R.id.cameraJoystickView);
-		cameraJoystick.setOnJoystickMoveListener(new OnJoystickMoveListener() {
-
-            @Override
-            public void onValueChanged(int angle, int power, int direction) {
-            	// Scale speed
-            	if (angle <= -45 || angle >= 135) {
-            		power *= -1;
-            	}
-            	
-            	// X to Y adapter
-            	if (angle > 90) {
-            		angle = 180 - angle;
-            	} else if (angle < -90) {
-            		angle = -(180 + angle);
-            	}
-                	send("!" + angle + ":" + power + "~");
-            }
-        }, JoystickView.DEFAULT_LOOP_INTERVAL);
-		
-		timerHandler.postDelayed(timerRunnable, 0);	
+	
     }
 	
 	@Override
@@ -139,30 +97,16 @@ public class MainActivity extends Activity {
 		send(message);
 	}
 	
-//	public void onVideo(View view) {	
-//		videoView.setImageResource(android.R.color.transparent);
-//		
-//		if (videoPlaying == true) {
-//			timerHandler.removeCallbacks(timerRunnable);
-//			videoPlaying = false;
-//		} else {
-//			videoPlaying = true;
-//			new DownloadImageTask(videoView).execute("http://" + serverIp + "/pic.jpg");
-//			timerHandler.postDelayed(timerRunnable, 0);					
-//		}
-//	}
-	
-	public void onCameraCentre(View view) {
-		send("centercamera");
-	}
-	
-	public void onAutoModeToggle(View view) {
-		boolean on = ((ToggleButton) view).isChecked();
+	public void onVideo(View view) {	
+		videoView.setImageResource(android.R.color.transparent);
 		
-		if (on) {
-			send("A1");
+		if (videoPlaying == true) {
+			timerHandler.removeCallbacks(timerRunnable);
+			videoPlaying = false;
 		} else {
-			send("A0");
+			videoPlaying = true;
+			new DownloadImageTask(videoView).execute("http://" + serverIp + "/pic.jpg");
+			timerHandler.postDelayed(timerRunnable, 0);					
 		}
 	}
 
@@ -196,6 +140,9 @@ public class MainActivity extends Activity {
 				e1.printStackTrace();
 			}
 		}
+	}
+	public void onClick(View view){
+		send((String) view.getTag());
 	}
 	
 	private class DownloadImageTask extends AsyncTask<String, Void, Bitmap> {
