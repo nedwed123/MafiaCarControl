@@ -1,3 +1,8 @@
+/**
+ * This class handles what happens in the setting page
+ * @author(simeon & dimi)
+ */
+
 package se.chalmers.balmung.smartcar;
 
 import java.io.BufferedReader;
@@ -17,6 +22,8 @@ public class SettingsActivity extends Activity {
 	String serverPort;
 	EditText serverIpField;
 	EditText serverPortField;
+	
+	
 //	TextView connectedDeviceIpField;
 
 	@Override
