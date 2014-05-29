@@ -1,0 +1,126 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent" >
+
+    <ImageView
+        android:id="@+id/videoView"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:src="@android:drawable/screen_background_dark"
+        android:onClick="onVideo"
+        android:scaleType="fitXY" />
+    
+    <Button
+        android:id="@+id/stop"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignRight="@+id/up"
+        android:layout_centerVertical="true"
+        android:onClick="onClick"
+        android:tag="5"
+        android:text="stop" />
+
+    <Button
+        android:id="@+id/left"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/up"
+        android:layout_toLeftOf="@+id/stop"
+        android:onClick="onClick"
+        android:tag="9"
+        android:text="left" />
+
+    <Button
+        android:id="@+id/right"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/down"
+        android:layout_toRightOf="@+id/stop"
+        android:onClick="onClick"
+        android:tag="8"
+        android:text="right" />
+
+    <Button
+        android:id="@+id/down"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/stop"
+        android:layout_below="@+id/stop"
+        android:onClick="onClick"
+        android:tag="2"
+        android:text="down" />
+
+    <Button
+        android:id="@+id/up"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/stop"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="113dp"
+        android:onClick="onClick"
+        android:tag="1"
+        android:text="up" />
+
+    <Button
+        android:id="@+id/FL"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/up"
+        android:layout_alignLeft="@+id/left"
+        android:layout_alignRight="@+id/left"
+        android:layout_alignTop="@+id/up"
+         android:onClick="onClick"
+        android:tag="3"
+        android:text="FL" />
+
+    <Button
+        android:id="@+id/FR"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/right"
+        android:layout_alignRight="@+id/right"
+        android:layout_alignTop="@+id/up"
+        android:layout_toRightOf="@+id/down"
+        android:onClick="onClick"
+        android:tag="4"
+        android:text="FR" />
+
+    <Button
+        android:id="@+id/BR"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/down"
+        android:layout_alignLeft="@+id/button2"
+        android:layout_alignRight="@+id/right"
+        android:layout_alignTop="@+id/down"
+        android:onClick="onClick"
+        android:tag="7"
+        android:text="BR" />
+
+    <Button
+        android:id="@+id/BL"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/down"
+        android:layout_alignLeft="@+id/left"
+        android:layout_alignRight="@+id/left"
+        android:layout_alignTop="@+id/down"
+        android:onClick="onClick"
+        android:tag="6"
+        android:text="BL" />
+
+     <TextView
+        android:id="@+id/AccidentCounter"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="NumberOfAccidents:" />
+
+    <TextView
+        android:id="@+id/BumpSensorCounter"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_toRightOf="@+id/stop"
+         />
+
+</RelativeLayout>
